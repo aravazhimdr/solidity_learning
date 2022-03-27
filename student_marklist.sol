@@ -9,7 +9,7 @@ contract Studentml {
   }
   mapping(address => Student) MapStudents;
   address[] students;
-  address admin;
+  address public immutable admin; //immutable; public (optional)
 
   constructor() {
       admin = msg.sender;
@@ -42,7 +42,7 @@ contract Studentml {
   }
   function min() external view returns(string memory, uint){
       uint i;
-      uint smallest = 0;
+      uint smallest = type(uint).max;
       address last_student;
       for(i = 0; i < students.length; i++){
             if(MapStudents[students[i]].total < smallest) {
